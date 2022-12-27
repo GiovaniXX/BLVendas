@@ -331,7 +331,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
     private void listaFormaPagamento() {
         listaModelFormaPagamentos = controllerFormaPagamento.getListaFormaPagamentoController();
         JCBpagamento.removeAllItems();
-        // Verificar linhas 335 e 336
+        // Testando se é null
         if (this.listaModelFormaPagamentos == null) {
             this.listaModelFormaPagamentos = new ArrayList<>();
         }
