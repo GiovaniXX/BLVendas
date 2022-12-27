@@ -40,6 +40,10 @@ public class ConexaoMySql {
         try {
             //Driver do PostgreSQL
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+           
+            // No need to manually load the driver class
+//            Connection conn = DriverManager.getConnection(
+//                    "jdbc:mysql://localhost:3306/db_blvendas", "user", "password");
 
             //local do banco, nome do banco, usuario e senha
             String url = "jdbc:mysql://" + servidor + "/" + nomeDoBanco;
