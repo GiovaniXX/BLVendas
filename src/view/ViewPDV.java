@@ -7,11 +7,13 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-//import java.awt.Component;
-//import static java.lang.annotation.RetentionPolicy.CLASS;
-//import javax.swing.JLabel;
-//import javax.swing.JTable;
-//import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Component;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import static java.lang.annotation.RetentionPolicy.CLASS;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.ModelProdutos;
 import model.ModelSessaoUsuario;
@@ -397,11 +399,12 @@ public class ViewPDV extends javax.swing.JFrame {
 
             if (viewPagamentoPDV.isVf_pago()) {
                 salvarVenda();
+                JOptionPane.showMessageDialog(this, "Venda salva com sucesso!", "AVISO", JOptionPane.WARNING_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Venda cancelada!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Venda salva com sucesso!", "AVISO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro de comunicaçaõ!", "ERRO", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_JMIfinalizarVendaActionPerformed
 
@@ -471,7 +474,6 @@ public class ViewPDV extends javax.swing.JFrame {
 
         if (controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutos)) {
             controllerProdutos.alterarEstoqueProdutoController(listaModelProdutos);
-            //JOptionPane.showMessageDialog(this, "E não é que deu certo...kkkkk");
             limparTela();
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao salvar os produtos", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -524,27 +526,45 @@ public class ViewPDV extends javax.swing.JFrame {
     /**
      * Method Diferencia com cores as linhas da tabela!
      */
-//    public void corNaLinha() {
-//        //CLASS = 
-//        JTprodutos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-//
-//            @Override
-//            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int colunm) {
-//                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colunm);
-//
-//                Color c = Color.WHITE;
-//                Object texto = table.getValueAt(row, 4);
-//
-//                if (texto != null && CLASS.equals(texto.toString())) {
-//                    c = Color.RED;
-//                }
-//                label.setBackground(c);
-//                JTprodutos.setSelectionForeground(Color.GREEN);
-//
-//                return label;
-//            }
-//        });
-//    } //Fim method...
+    public void corNaLinha() {
+        RetentionPolicy c = CLASS;
+
+        JTprodutos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int colunm) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colunm);
+
+                Color c = Color.WHITE;
+                Object texto = table.getValueAt(row, 4);
+
+                /**
+                 * Neste trecho de código, texto está sendo comparado a null e
+                 * então ao resultado de texto.toString() sendo igual ao valor
+                 * de CLASS. Se ambas as condições forem verdadeiras, o valor de
+                 * c é definido como Color.RED. O operador && é um operador AND
+                 * lógico, o que significa que ambas as condições em ambos os
+                 * lados dele devem ser verdadeiras para que toda a expressão
+                 * seja verdadeira. Nesse caso, a primeira condição verifica se
+                 * o texto não é nulo. Se texto for nulo, a expressão será falsa
+                 * e o bloco de código após a instrução if não será executado.
+                 * Se texto não for nulo, verifica-se a segunda condição, que
+                 * verifica se texto.toString() é igual a CLASS. Se essa
+                 * condição também for verdadeira, o valor de c será definido
+                 * como Color.RED. Se qualquer uma dessas condições for falsa, o
+                 * valor de c não será alterado.
+                 */
+                if (texto != null && CLASS.equals(texto.toString())) {
+                    c = Color.RED;
+                }
+                label.setBackground(c);
+                JTprodutos.setSelectionForeground(Color.GREEN);
+
+                return label;
+            }
+        });
+    } //Fim method...
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

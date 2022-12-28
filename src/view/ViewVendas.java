@@ -796,27 +796,28 @@ public class ViewVendas extends javax.swing.JFrame {
     /**
      * Method Diferencia com cores as linhas da tabela!
      */
-//    public void corNaLinha() {
-//        //CLASS = "Texto"; 
-//        JTvendas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-//
-//            @Override
-//            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int colunm) {
-//                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colunm);
-//
-//                Color c = new Color(73,128,231);
-//                Object texto = table.getValueAt(row, 4);
-//
-//                if (texto != null && CLASS.equals(texto.toString())) {
-//                    c = new Color(8,13,32);
-//                }
-//                label.setBackground(c);
-//                JTvendas.setSelectionForeground(Color.GREEN);
-//
-//                return label;
-//            }
-//        });
-//    }
+    public void corNaLinha() {
+        //CLASS = "Texto"; 
+        JTtabelaVendas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int colunm) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colunm);
+
+                Color c = new Color(73, 128, 231);
+                Object texto = table.getValueAt(row, 4);
+
+                if (texto != null && CLASS.equals(texto.toString())) {
+                    c = new Color(8, 13, 32);
+                }
+                label.setBackground(c);
+                JTtabelaVendas.setSelectionForeground(Color.GREEN);
+
+                return label;
+            }
+        });
+    }
+
     private void limparFormulario() {
         JTFquantidade.setText("");
         JTFdesconto.setText("");
