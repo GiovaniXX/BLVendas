@@ -40,24 +40,24 @@ public class ImprimePDV {
         StringBuilder cupomTXT = new StringBuilder();
 
         cupomTXT.append(
-                "Sale Receipt\n");
+                "Recibo de venda\n");
         cupomTXT.append(
-                "Sale Code: " + pCodigo + "\n");
+                "Codigo: " + pCodigo + "\n");
         cupomTXT.append(
-                "Sale Date: " + new SimpleDateFormat("dd/MM/yyyy").format(modelVendas.getDataVenda()) + "\n");
+                "Data: " + new SimpleDateFormat("dd/MM/yyyy").format(modelVendas.getDataVenda()) + "\n");
         cupomTXT.append(
-                "Client: " + modelVendas.getCliente() + "\n");
+                "Cliente: " + modelVendas.getCliente() + "\n");
         cupomTXT.append(
                 "Total: " + modelVendas.getValorTotal() + "\n\n");
         cupomTXT.append(
-                "Products:\n");
+                "Produos:\n");
 
         // add the list of products to the receipt text
         for (ModelVendasProdutos modelVendasProdutos : listaModelVendasProdutos) {
-            cupomTXT.append("Code: " + modelVendasProdutos.getModelProdutos().getIdProduto() + "\n");
-            cupomTXT.append("Name: " + modelVendasProdutos.getModelProdutos().getProNome() + "\n");
-            cupomTXT.append("Quantity: " + modelVendasProdutos.getModelProdutos().getProQtd() + "\n");
-            cupomTXT.append("Price: " + modelVendasProdutos.getModelProdutos().getProValor() + "\n");
+            cupomTXT.append("Codigo: " + modelVendasProdutos.getModelProdutos().getIdProduto() + "\n");
+            cupomTXT.append("Nome: " + modelVendasProdutos.getModelProdutos().getProNome() + "\n");
+            cupomTXT.append("Quantidade: " + modelVendasProdutos.getModelProdutos().getProQtd() + "\n");
+            cupomTXT.append("Preço: " + modelVendasProdutos.getModelProdutos().getProValor() + "\n");
             cupomTXT.append("Total: " + modelVendasProdutos.getModelProdutos().getProValor() * modelVendasProdutos.getModelProdutos().getProQtd() + "\n\n");
         }
 
@@ -68,7 +68,7 @@ public class ImprimePDV {
         set.add(OrientationRequested.PORTRAIT);
 
         set.add(
-                new JobName("Sale Receipt", null));
+                new JobName("Recibo de venda", null));
         set.add(MediaSizeName.ISO_A4);
 
         DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
