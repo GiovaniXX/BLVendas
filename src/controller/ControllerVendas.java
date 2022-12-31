@@ -19,11 +19,37 @@ public class ControllerVendas {
         return this.daoVendas.salvarVendasDAO(modelVendas);
     }
 
-    public boolean excluirVendasController(int codigo) {
-        return this.daoVendas.excluirVendasDAO(codigo);
+    /**
+     * Atualizar vendas
+     *
+     * @param pModelVendas
+     * @return
+     */
+    public boolean atualizarVendasController(ModelVendas pModelVendas) {
+        return this.daoVendas.atualizarVendasDAO(pModelVendas);
     }
 
-    public boolean atualizarVendasController(ModelVendas modelVendas) {
-        return this.daoVendas.atualizarVendasDAO(modelVendas);
+    /**
+     * Excluir Vendas
+     *
+     * @param pIdVenda
+     * @return
+     */
+    public boolean excluirVendasController(int pIdVenda) {
+        return this.daoVendas.excluirVendasDAO(pIdVenda);
+    }
+
+    /**
+     * Gerar relatorio da venda
+     *
+     * @param codigoVenda
+     * @return
+     */
+    public boolean gerarRelatorios(int codigoVenda) {
+        return this.daoVendas.relatorioVendaDAO(codigoVenda);
+    }
+
+    public void gerarRelatorioVenda(int codigoVenda) {
+        this.daoVendas.gerarRelatorioDAO(codigoVenda);
     }
 }

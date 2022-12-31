@@ -90,6 +90,7 @@ public class ViewVendas extends javax.swing.JFrame {
         JTtabelaVendas = new javax.swing.JTable();
         JBexcluir = new javax.swing.JButton();
         JBalterar = new javax.swing.JButton();
+        JBimprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Interface Vendas");
@@ -410,6 +411,14 @@ public class ViewVendas extends javax.swing.JFrame {
             }
         });
 
+        JBimprimir.setBackground(new java.awt.Color(73, 128, 231));
+        JBimprimir.setText("Imprimir");
+        JBimprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBimprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -421,15 +430,16 @@ public class ViewVendas extends javax.swing.JFrame {
                         .addComponent(JTFpesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JBpesquisar))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(JBexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)
-                                .addComponent(JBalterar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JBexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(JBalterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JBimprimir)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -442,11 +452,12 @@ public class ViewVendas extends javax.swing.JFrame {
                     .addComponent(JTFpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBpesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBexcluir)
-                    .addComponent(JBalterar))
+                    .addComponent(JBalterar)
+                    .addComponent(JBimprimir))
                 .addContainerGap())
         );
 
@@ -695,27 +706,43 @@ public class ViewVendas extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_JBalterarActionPerformed
 
+    private void JBimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBimprimirActionPerformed
+        int linha = JTtabelaVendas.getSelectedRow();
+        int codigoVenda = (int) JTtabelaVendas.getValueAt(linha, 0);
+
+        final ViewAguarde carregando = new ViewAguarde();
+        carregando.setVisible(true);
+        Thread thd = new Thread() {
+
+            public void run() {
+                try {
+                    controllerVendas.gerarRelatorioVenda(codigoVenda);
+                    carregando.dispose();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro");
+                }
+            }
+        };
+        thd.start();
+    }//GEN-LAST:event_JBimprimirActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ViewVendas.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(ViewVendas.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(ViewVendas.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ViewVendas.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -831,6 +858,7 @@ public class ViewVendas extends javax.swing.JFrame {
     private javax.swing.JButton JBalterar;
     private javax.swing.JButton JBcancelar;
     private javax.swing.JButton JBexcluir;
+    private javax.swing.JButton JBimprimir;
     private javax.swing.JButton JBnovo;
     private javax.swing.JButton JBpesquisar;
     private javax.swing.JButton JBremoverProdutos;

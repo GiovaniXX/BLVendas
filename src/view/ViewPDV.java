@@ -8,9 +8,22 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.awt.Component;
-import java.lang.annotation.Retention;
+import java.awt.PrintJob;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.lang.annotation.RetentionPolicy;
 import static java.lang.annotation.RetentionPolicy.CLASS;
+import java.text.SimpleDateFormat;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.JobName;
+import javax.print.attribute.standard.MediaSizeName;
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -395,8 +408,6 @@ public class ViewPDV extends javax.swing.JFrame {
             viewPagamentoPDV.setJFTFsubTotal();
             viewPagamentoPDV.setVisible(true);
 
-            System.err.println(viewPagamentoPDV.getFormaPagamento());
-
             if (viewPagamentoPDV.isVf_pago()) {
                 salvarVenda();
                 JOptionPane.showMessageDialog(this, "Venda salva com sucesso!", "AVISO", JOptionPane.WARNING_MESSAGE);
@@ -464,6 +475,7 @@ public class ViewPDV extends javax.swing.JFrame {
             modelVendasProdutos.setProduto(codigoProduto);
             modelVendasProdutos.setVendas(codigoVenda);
             modelVendasProdutos.setVenProValor((double) JTprodutos.getValueAt(i, 4));
+            modelVendasProdutos.setNomeProduto(JTprodutos.getValueAt(i, 2).toString());
             modelVendasProdutos.setVenProQuantidade(Integer.parseInt(JTprodutos.getValueAt(i, 3).toString()));
 
             modelProdutos.setIdProduto(codigoProduto);
@@ -474,9 +486,81 @@ public class ViewPDV extends javax.swing.JFrame {
 
         if (controllerVendasProdutos.salvarVendasProdutosController(listaModelVendasProdutos)) {
             controllerProdutos.alterarEstoqueProdutoController(listaModelProdutos);
+            imprimirCupom(listaModelVendasProdutos, modelVendas);
             limparTela();
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao salvar os produtos", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Imprime cupom Nfe não fiscal
+    private void imprimirCupom(ArrayList<ModelVendasProdutos> listaModelVendasProdutos, ModelVendas modelVendas) {
+        String dataF = "dd/MM/yyyy";
+        String horaF = "H:mm - a";
+        String data, hora;
+
+        java.util.Date dataAtual = new java.util.Date();
+        SimpleDateFormat formata = new SimpleDateFormat();
+        data = formata.format(dataAtual);
+
+        formata = new SimpleDateFormat(horaF);
+        Object tempoAtual = null;
+        hora = formata.format(tempoAtual);
+
+        String conteudoImprimir = "";
+
+        for (int i = 0; i < listaModelVendasProdutos.size(); i++) {
+            conteudoImprimir += listaModelVendasProdutos.get(i).getProduto() + " "
+                    + listaModelVendasProdutos.get(i).getVenProQuantidade() + " "
+                    + listaModelVendasProdutos.get(i).getVenProValor() + " "
+                    + listaModelVendasProdutos.get(i).getNomeProduto() + "\n\r";
+        }
+
+        this.imprimir("""
+                      ADRIANE PERFUMARIA \n\r
+                      \r RUA: MARECHAL RONDON 387
+                      \r BAIRRO: CONTA DINHEIRO
+                      \r TEL: (49) 9 9957-3756
+                      \r CHAVE PIX: 00000000000
+                      \r-------------------------
+                      \r     CUPOM NAO FISCAL     
+                      \r-------------------------
+                      \r QTDE PRECO DESCRICAO
+                      \r"""
+                + conteudoImprimir + ""
+                + "--------------------------\n\r"
+                + "VALOR BRUTO:" + modelVendas.getVenValorBruto() + "  "
+                + "   DESCONTO:" + modelVendas.getVenDesconto() + "  "
+                + "VALOR TOTAL:" + modelVendas.getVenValorLiquido() + "\n\r"
+                + "--------------------------\n\r"
+                + data + "-" + hora + "\n\r"
+                + "\n\r"
+                + "   OBRIGADO PELA PREFERENCIA   \n\r"
+                + "\n\r\n\r\f"
+        );
+    }
+
+    public void imprimir(String pTexto) {
+        try {
+            InputStream inputStream = new ByteArrayInputStream(pTexto.getBytes());
+            DocFlavor docFlavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+            SimpleDoc simpleDoc = new SimpleDoc(inputStream, docFlavor, null);
+            PrintService printService = PrintServiceLookup.lookupDefaultPrintService();
+
+            PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+            printRequestAttributeSet.add(new JobName("Impressao", null));
+            printRequestAttributeSet.add(OrientationRequested.PORTRAIT);
+            printRequestAttributeSet.add(MediaSizeName.ISO_A4);
+
+            DocPrintJob docPrintJob = printService.createPrintJob();
+
+            try {
+                printJob.print(simpleDoc, (PrintRequestAttributeSet) printRequestAttributeSet);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar a impressão!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+            inputStream.close();
+        } catch (Exception e) {
         }
     }
 
@@ -630,4 +714,14 @@ public class ViewPDV extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
+
+    private static class printJob {
+
+        private static void print(SimpleDoc simpleDoc, PrintRequestAttributeSet printRequestAttributeSet) {
+
+        }
+
+        public printJob() {
+        }
+    }
 }

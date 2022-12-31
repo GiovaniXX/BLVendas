@@ -1,0 +1,36 @@
+public class NfeCoupon {
+  private String couponCode;
+  private String description;
+  private double value;
+
+  public NfeCoupon(String couponCode, String description, double value) {
+    this.couponCode = couponCode;
+    this.description = description;
+    this.value = value;
+  }
+
+  public String getCouponCode() {
+    return couponCode;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public double getValue() {
+    return value;
+  }
+
+  public void printCoupon() {
+    System.out.println("Coupon Code: " + couponCode);
+    System.out.println("Description: " + description);
+    System.out.println("Value: " + value);
+  }
+}
+
+NfeCoupon coupon = new NfeCoupon("XYZ123", "Non-taxable discount", 50.0);
+coupon.printCoupon();
+
+Coupon Code: XYZ123
+Description: Non-taxable discount
+Value: 50.0
