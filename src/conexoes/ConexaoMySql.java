@@ -39,7 +39,7 @@ public class ConexaoMySql {
     public Connection conectar() throws SQLException {
         try {
             //Driver do PostgreSQL
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
            
             // No need to manually load the driver class
 //            Connection conn = DriverManager.getConnection(

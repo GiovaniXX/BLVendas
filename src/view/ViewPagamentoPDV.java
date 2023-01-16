@@ -44,7 +44,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
         JLvalorTotalPagar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         JTFtroco = new javax.swing.JTextField();
-        JBok = new javax.swing.JButton();
+        JBimprimirCupomFiscal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Interface Pagamento PDV");
@@ -137,12 +137,12 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
 
         JTFtroco.setBackground(new java.awt.Color(15, 70, 110));
 
-        JBok.setBackground(new java.awt.Color(15, 70, 110));
-        JBok.setForeground(new java.awt.Color(255, 255, 255));
-        JBok.setText("OK");
-        JBok.addActionListener(new java.awt.event.ActionListener() {
+        JBimprimirCupomFiscal.setBackground(new java.awt.Color(15, 70, 110));
+        JBimprimirCupomFiscal.setForeground(new java.awt.Color(255, 255, 255));
+        JBimprimirCupomFiscal.setText("Imprimir Cupom Fiscal");
+        JBimprimirCupomFiscal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBokActionPerformed(evt);
+                JBimprimirCupomFiscalActionPerformed(evt);
             }
         });
 
@@ -157,8 +157,8 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JTFtroco, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(217, 217, 217)
-                        .addComponent(JBok, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(172, 172, 172)
+                        .addComponent(JBimprimirCupomFiscal))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -202,7 +202,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(JTFtroco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBok))
+                    .addComponent(JBimprimirCupomFiscal))
                 .addContainerGap())
         );
 
@@ -221,7 +221,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBokActionPerformed
+    private void JBimprimirCupomFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBimprimirCupomFiscalActionPerformed
         this.desconto = Float.parseFloat(this.JFTFdesconto.getText());
         this.valorRecebido = Float.parseFloat(this.JFTFvalorRecebido.getText());
         this.troco = Float.parseFloat(this.JTFtroco.getText());
@@ -229,7 +229,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
         this.formaPagamento = JCBpagamento.getSelectedItem().toString();
         this.vf_pago = true;
         dispose();
-    }//GEN-LAST:event_JBokActionPerformed
+    }//GEN-LAST:event_JBimprimirCupomFiscalActionPerformed
 
     private void JFTFdescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JFTFdescontoFocusLost
         JFTFdesconto.setText(blMascaras.converterVirgulaParaPonto(JFTFdesconto.getText()));
@@ -347,7 +347,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBok;
+    private javax.swing.JButton JBimprimirCupomFiscal;
     private javax.swing.JComboBox<String> JCBpagamento;
     private javax.swing.JFormattedTextField JFTFdesconto;
     private javax.swing.JFormattedTextField JFTFsubtotal;

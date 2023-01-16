@@ -335,7 +335,7 @@ public class ViewUsuario extends javax.swing.JFrame {
         });
     }
 
-    // Carregar usuarios na tabela
+    //Carrega usuarios na tabela
     private void carregarUsuarios() {
         listaModelUsuarios = controllerUsuarios.getListaUsuariosController();
         DefaultTableModel modelo = (DefaultTableModel) JTusuario.getModel();

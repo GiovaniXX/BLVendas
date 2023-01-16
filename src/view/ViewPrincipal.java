@@ -45,7 +45,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1366, 768));
 
         UJPIlogo.setBackground(new java.awt.Color(8, 13, 32));
-        UJPIlogo.setImagem(new java.io.File("D:\\Outros backup\\NetBeansProjects(TESTES)\\BLVendas\\src\\imagens\\000.jpg"));
+        UJPIlogo.setForeground(new java.awt.Color(8, 13, 32));
+        UJPIlogo.setImagem(new java.io.File("E:\\BACKUP DISCO D\\Outros backup\\NetBeansProjects(TESTES)\\BLVendas\\src\\imagens\\000.jpg"));
 
         jPanel3.setBackground(new java.awt.Color(15, 70, 110));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());

@@ -6,7 +6,7 @@ import model.ModelClientes;
 
 public class ControllerClientes {
 
-    private DaoClientes daoCliente = new DaoClientes();
+    private DaoClientes daoClientes = new DaoClientes();
 
     /**
      * Grava Cliente
@@ -15,7 +15,7 @@ public class ControllerClientes {
      * @return int
      */
     public int salvarClienteController(ModelClientes pModelCliente) {
-        return this.daoCliente.salvarClienteDAO(pModelCliente);
+        return this.daoClientes.salvarClienteDAO(pModelCliente);
     }
 
     /**
@@ -25,7 +25,7 @@ public class ControllerClientes {
      * @return ModelCliente
      */
     public ModelClientes getClienteController(int pIdCliente) {
-        return this.daoCliente.getClienteDAO(pIdCliente);
+        return this.daoClientes.getClienteDAO(pIdCliente);
     }
 
     /**
@@ -35,7 +35,7 @@ public class ControllerClientes {
      * @return ModelCliente
      */
     public ModelClientes getClienteController(String pNomeCliente) {
-        return this.daoCliente.getClienteDAO(pNomeCliente);
+        return this.daoClientes.getClienteDAO(pNomeCliente);
     }
 
     /**
@@ -44,7 +44,7 @@ public class ControllerClientes {
      * @return
      */
     public ArrayList<ModelClientes> getListaClientesController() {
-        return this.daoCliente.getListaClienteDAO();
+        return this.daoClientes.getListaClienteDAO();
     }
 
     /**
@@ -54,7 +54,7 @@ public class ControllerClientes {
      * @return boolean
      */
     public boolean atualizarClienteController(ModelClientes pModelCliente) {
-        return this.daoCliente.atualizarClienteDAO(pModelCliente);
+        return this.daoClientes.atualizarClienteDAO(pModelCliente);
     }
 
     /**
@@ -64,6 +64,6 @@ public class ControllerClientes {
      * @return boolean
      */
     public boolean excluirClienteController(int pIdCliente) {
-        return this.daoCliente.excluirClienteDAO(pIdCliente);
+        return this.daoClientes.excluirClienteDAO(pIdCliente);
     }
 }

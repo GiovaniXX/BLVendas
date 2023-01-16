@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.awt.Component;
-import java.awt.PrintJob;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.lang.annotation.RetentionPolicy;
@@ -415,7 +414,7 @@ public class ViewPDV extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Venda cancelada!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro de comunicaçaõ!", "ERRO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro de comunicação!", "ERRO", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_JMIfinalizarVendaActionPerformed
 
