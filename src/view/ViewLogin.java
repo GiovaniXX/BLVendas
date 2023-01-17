@@ -62,10 +62,20 @@ public class ViewLogin extends javax.swing.JFrame {
         JTFlogin.setBackground(new java.awt.Color(8, 13, 32));
         JTFlogin.setForeground(new java.awt.Color(255, 255, 255));
         JTFlogin.setLabelText("Entre com seu login");
+        JTFlogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFloginActionPerformed(evt);
+            }
+        });
 
         JPFsenha.setBackground(new java.awt.Color(8, 13, 32));
         JPFsenha.setForeground(new java.awt.Color(255, 255, 255));
         JPFsenha.setLabelText("Entre com sua senha");
+        JPFsenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JPFsenhaActionPerformed(evt);
+            }
+        });
 
         JBentrar.setBorder(null);
         JBentrar.setText("Entrar");
@@ -177,6 +187,14 @@ public class ViewLogin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_JBsairActionPerformed
 
+    private void JTFloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFloginActionPerformed
+        JPFsenha.requestFocus();
+    }//GEN-LAST:event_JTFloginActionPerformed
+
+    private void JPFsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPFsenhaActionPerformed
+        entrar();
+    }//GEN-LAST:event_JPFsenhaActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -220,13 +238,6 @@ public class ViewLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Verifique no SGBD suas credenciais!", "ALERTA", JOptionPane.WARNING_MESSAGE);
         }
     }
-
-//    public void fecharTelaLogin(boolean credentialsAreValid) {
-//
-//        if (credentialsAreValid) {
-//            setVisible(false);
-//        }
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private UI_Custom.Button JBentrar;

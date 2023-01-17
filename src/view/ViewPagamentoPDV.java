@@ -266,18 +266,18 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
 
         try {
             subTotal = Float.parseFloat(JFTFsubtotal.getText());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             subTotal = 0;
         }
         try {
             desconto = Float.parseFloat(JFTFdesconto.getText());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             desconto = 0;
             JFTFdesconto.setText("0");
         }
         try {
             recebido = Float.parseFloat(JFTFvalorRecebido.getText());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             recebido = 0;
             JFTFvalorRecebido.setText("0");
         }

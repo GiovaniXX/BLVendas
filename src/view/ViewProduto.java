@@ -296,12 +296,14 @@ public class ViewProduto extends javax.swing.JFrame {
 
     private void JBnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnovoActionPerformed
         habilitarDesabilitarCampos(true);
+        JTFnome.requestFocus();
         alterarSalvar = "salvar";
     }//GEN-LAST:event_JBnovoActionPerformed
 
     private void JBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBalterarActionPerformed
         alterarSalvar = "alterar";
         habilitarDesabilitarCampos(true);
+        JTFnome.requestFocus();
         int linha = this.JTproduto.getSelectedRow();
         try {
             int codigoProduto = (int) this.JTproduto.getValueAt(linha, 0);

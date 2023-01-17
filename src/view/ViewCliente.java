@@ -309,6 +309,7 @@ public class ViewCliente extends javax.swing.JFrame {
 
     private void JBnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnovoActionPerformed
         desabilitaHabilitaCampos(true);
+        JTFnome.requestFocus();
         limparCampos();
         alterarSalvar = "salvar";
     }//GEN-LAST:event_JBnovoActionPerformed
@@ -384,6 +385,7 @@ public class ViewCliente extends javax.swing.JFrame {
         JTFtelefone.setText(modelClientes.getCliTelefone());
 
         this.desabilitaHabilitaCampos(true);
+        JTFnome.requestFocus();
     }//GEN-LAST:event_JBalterarActionPerformed
 
     public static void main(String args[]) {

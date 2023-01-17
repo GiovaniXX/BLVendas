@@ -199,6 +199,9 @@
             </Property>
             <Property name="labelText" type="java.lang.String" value="Entre com seu login"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFloginActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI_Custom.PasswordField" name="JPFsenha">
           <Properties>
@@ -210,6 +213,9 @@
             </Property>
             <Property name="labelText" type="java.lang.String" value="Entre com sua senha"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JPFsenhaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI_Custom.Button" name="JBentrar">
           <Properties>
