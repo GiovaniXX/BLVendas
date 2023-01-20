@@ -538,12 +538,13 @@ public class ViewVendas extends javax.swing.JFrame {
         carregando.setVisible(true);
         Thread thd = new Thread() {
 
+            @Override
             public void run() {
                 try {
-                    controllerVendas.gerarRelatorioVenda(codigoVenda);
+                    controllerVendas.gerarRelatoriosVendas(codigoVenda);
                     carregando.dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro");
+                    JOptionPane.showMessageDialog(null, "Erro ao gerar o relatório!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
             }
         };

@@ -172,7 +172,7 @@ public class DaoVendas extends ConexaoMySql {
         try {
             this.conectar();
             this.executarSQL(
-                    " SELECT "
+                    "SELECT "
                     + "tbl_cliente.pk_id_cliente AS tbl_cliente_pk_id_cliente,"
                     + "tbl_cliente.cli_nome AS tbl_cliente_cli_nome,"
                     + "tbl_cliente.cli_endereco AS tbl_cliente_cli_endereco,"
@@ -197,14 +197,14 @@ public class DaoVendas extends ConexaoMySql {
                     + "tbl_cliente tbl_cliente INNER JOIN tbl_vendas tbl_vendas ON tbl_cliente.pk_id_cliente = tbl_vendas.fk_cliente"
                     + " INNER JOIN tbl_vendas_produtos tbl_vendas_produtos ON tbl_vendas.pk_id_vendas = tbl_vendas_produtos.fk_vendas"
                     + " INNER JOIN tbl_produto tbl_produto ON tbl_vendas_produtos.fk_produto = tbl_produto.pk_id_produto "
-                    + " WHERE tbl_vendas.pk_id_vendas = '" + codigoVenda + "',"
+                    + " WHERE tbl_vendas.pk_id_vendas = '" + codigoVenda + "';"
             );
             JRResultSetDataSource jrrs = new JRResultSetDataSource(getResultSet());
             InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("ireport/relatoriosVendas.jasper");
             JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, new HashMap(), jrrs);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "D:/Outros backup/NetBeansProjects(TESTES)/BLVendas/rel/relVendas.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/P-2023/BLVendas/rel/relVendas.pdf");
 
-            File file = new File("D:/Outros backup/NetBeansProjects(TESTES)/BLVendas/rel/relVendas.pdf");
+            File file = new File("E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/P-2023/BLVendas/rel/relVendas.pdf");
             try {
                 Desktop.getDesktop().open(file);
             } catch (Exception e) {
@@ -220,7 +220,7 @@ public class DaoVendas extends ConexaoMySql {
         }
     }
 
-    public void gerarRelatorioDAO(int codigoVenda) {
-
-    }
+//    public void gerarRelatorioDAO(int codigoVenda) {
+//
+//    }
 }

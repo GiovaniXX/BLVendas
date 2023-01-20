@@ -99,7 +99,7 @@ public class ViewPagamentoPDV extends javax.swing.JDialog {
         });
 
         JCBpagamento.setBackground(new java.awt.Color(15, 70, 110));
-        JCBpagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A VISTA", "CARTÃO", "PIX", "PARCELADO" }));
+        JCBpagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A VISTA", "CARTÃO", "PIX", "PARCELADO 1x", "PARCELADO 2x", "PARCELADO 3x", "PARCELADO 4x", " " }));
         JCBpagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBpagamentoActionPerformed(evt);

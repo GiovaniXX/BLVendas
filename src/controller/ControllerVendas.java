@@ -45,11 +45,7 @@ public class ControllerVendas {
      * @param codigoVenda
      * @return
      */
-    public boolean gerarRelatorios(int codigoVenda) {
+    public boolean gerarRelatoriosVendas(int codigoVenda) {
         return this.daoVendas.relatorioVendaDAO(codigoVenda);
-    }
-
-    public void gerarRelatorioVenda(int codigoVenda) {
-        this.daoVendas.gerarRelatorioDAO(codigoVenda);
-    }
+    }  
 }

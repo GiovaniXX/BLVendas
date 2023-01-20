@@ -10,9 +10,26 @@ public class ModelFormaPagamentos {
 
     /**
      * Construtor
+     *
+     * @param idForPag
+     * @param descricaoForpag
+     * @param descontoForpag
+     * @param parcelasForPag
+     * @param situacaoForPag
+     */
+//    public ModelFormaPagamentos(int idForPag, String descricaoForpag, float descontoForpag, int parcelasForPag, int situacaoForPag) {
+//        this.idForPag = idForPag;
+//        this.descricaoForPag = descricaoForpag;
+//        this.descontoForPag = descontoForpag;
+//        this.parcelasForpag = parcelasForPag;
+//        this.situacaoForPag = situacaoForPag;
+//    }
+    
+    /**
+     * Construtor
      */
     public ModelFormaPagamentos() {
-
+        
     }
 
     /**

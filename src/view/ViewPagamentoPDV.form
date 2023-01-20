@@ -202,11 +202,15 @@
               <Color blue="6e" green="46" red="f" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="A VISTA"/>
                 <StringItem index="1" value="CART&#xc3;O"/>
                 <StringItem index="2" value="PIX"/>
-                <StringItem index="3" value="PARCELADO"/>
+                <StringItem index="3" value="PARCELADO 1x"/>
+                <StringItem index="4" value="PARCELADO 2x"/>
+                <StringItem index="5" value="PARCELADO 3x"/>
+                <StringItem index="6" value="PARCELADO 4x"/>
+                <StringItem index="7" value=" "/>
               </StringArray>
             </Property>
           </Properties>

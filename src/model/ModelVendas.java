@@ -10,6 +10,7 @@ public class ModelVendas {
     private double venValorLiquido;
     private double venValorBruto;
     private double venDesconto;
+    private String venFormaPagamento;
 
     /**
      * Construtor
@@ -101,8 +102,28 @@ public class ModelVendas {
         this.venDesconto = venDesconto;
     }
 
+    /**
+     * 
+     * @return the venFormaPagamento
+     */
+    public String getVenFormaPagamento() {
+        return venFormaPagamento;
+    }
+
+    /**
+     * 
+     * @param venFormaPagamento the venFormaPagamento to set
+     */
+    public void setVenFormaPagamento(String venFormaPagamento) {
+        this.venFormaPagamento = venFormaPagamento;
+    }
+
     @Override
     public String toString() {
-        return "ModelVendas{" + "idVenda=" + idVenda + ", cliente=" + cliente + ", venDataVenda=" + venDataVenda + ", venValorLiquido=" + venValorLiquido + ", venValorBruto=" + venValorBruto + ", venDesconto=" + venDesconto + '}';
+        return "ModelVendas{" + "idVenda=" + idVenda + ", cliente=" + cliente + ", venDataVenda=" + venDataVenda + ", venValorLiquido=" + venValorLiquido + ", venValorBruto=" + venValorBruto + ", venDesconto=" + venDesconto + ", venFormaPagamento=" + venFormaPagamento + '}';
     }
+
+//    public String getFormapagamentos() {
+//        throw new UnsupportedOperationException();
+//    }
 }

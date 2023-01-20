@@ -499,7 +499,7 @@ public class ViewPDV extends javax.swing.JFrame {
         String data, hora;
 
         java.util.Date dataAtual = new java.util.Date();
-        SimpleDateFormat formata = new SimpleDateFormat();
+        SimpleDateFormat formata = new SimpleDateFormat(dataF);
         data = formata.format(dataAtual);
 
         formata = new SimpleDateFormat(horaF);
@@ -509,28 +509,31 @@ public class ViewPDV extends javax.swing.JFrame {
         String conteudoImprimir = "";
 
         for (int i = 0; i < listaModelVendasProdutos.size(); i++) {
-            conteudoImprimir += listaModelVendasProdutos.get(i).getProduto() + " "
+            conteudoImprimir += //listaModelVendasProdutos.get(i).getProduto() + " "
                     + listaModelVendasProdutos.get(i).getVenProQuantidade() + " "
                     + listaModelVendasProdutos.get(i).getVenProValor() + " "
                     + listaModelVendasProdutos.get(i).getNomeProduto() + "\n\r";
         }
 
         this.imprimir("""
-                      ADRIANE PERFUMARIA \n\r
-                      \r RUA: MARECHAL RONDON 387
-                      \r BAIRRO: CONTA DINHEIRO
-                      \r TEL: (49) 9 9957-3756
-                      \r CHAVE PIX: 00000000000
-                      \r-------------------------
-                      \r     CUPOM NAO FISCAL     
-                      \r-------------------------
-                      \r QTDE PRECO DESCRICAO
-                      \r"""
+                             PERFUMARIA
+                      ADRIANE REGINA FERNANDES
+                      RUA: MARECHAL RONDON 387
+                      BAIRRO: CONTA DINHEIRO
+                      TEL: (49) 9 9957-3756
+                      CHAVE PIX: 00000000000
+                      -------------------------
+                           CUPOM NÃO FISCAL     
+                      -------------------------
+                      COD DESCRICAO QTD VALOR 
+                      """
                 + conteudoImprimir + ""
                 + "--------------------------\n\r"
-                + "VALOR BRUTO:" + modelVendas.getVenValorBruto() + "  "
-                + "   DESCONTO:" + modelVendas.getVenDesconto() + "  "
-                + "VALOR TOTAL:" + modelVendas.getVenValorLiquido() + "\n\r"
+                + "VALOR BRUTO: " + modelVendas.getVenValorBruto() + ""
+                + "   DESCONTO: " + modelVendas.getVenDesconto() + ""
+                + "VALOR TOTAL: " + modelVendas.getVenValorLiquido() + ""
+                + "--------------------------\n\r"
+                + "FORMA DE PAGAMENTO: " + modelVendas.getVenFormaPagamento() + ""
                 + "--------------------------\n\r"
                 + data + "-" + hora + "\n\r"
                 + "\n\r"
@@ -588,7 +591,7 @@ public class ViewPDV extends javax.swing.JFrame {
                 JTFcodigoProduto.setText("");
                 quantidade = 1;
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Este campo não pode ser vazio!", "ALERT", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Este campo não pode ser vazio!", "ALERTA", JOptionPane.WARNING_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Neste campo somente números!", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
