@@ -1,8 +1,17 @@
 package DAO;
 
 import conexoes.ConexaoMySql;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 import model.ModelClientes;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public class DaoClientes extends ConexaoMySql {
 
@@ -152,7 +161,7 @@ public class DaoClientes extends ConexaoMySql {
                     + "cli_cep,"
                     + "cli_telefone"
                     + " FROM "
-                    + "tbl_cliente"                  
+                    + "tbl_cliente"
             );
             while (this.getResultSet().next()) {
                 modelClientes = new ModelClientes();
@@ -220,6 +229,43 @@ public class DaoClientes extends ConexaoMySql {
                     + "pk_id_cliente = '" + pIdCliente + "'"
                     + ";"
             );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            this.fecharConexao();
+        }
+    }
+
+    public boolean gerarRelatorioCliente() {
+        try {
+            this.conectar();
+            this.executarSQL(
+                    "SELECT "
+                    + "tbl_cliente.pk_id_cliente AS tbl_cliente_pk_id_cliente,"
+                    + "tbl_cliente.cli_nome AS tbl_cliente_cli_nome,"
+                    + "tbl_cliente.cli_endereco AS tbl_cliente_cli_endereco,"
+                    + "tbl_cliente.cli_bairro AS tbl_cliente_cli_bairro,"
+                    + "tbl_cliente.cli_cidade AS tbl_cliente_cli_cidade,"
+                    + "tbl_cliente.cli_uf AS tbl_cliente_cli_uf,"
+                    + "tbl_cliente.cli_cep AS tbl_cliente_cli_cep,"
+                    + "tbl_cliente.cli_telefone AS tbl_cliente_cli_telefone"
+                    + " FROM "
+                    + "tbl_cliente"
+            );
+            JRResultSetDataSource jrrs = new JRResultSetDataSource(getResultSet());
+            InputStream caminhoRelatorio = this.getClass().getClassLoader().getResourceAsStream("relatorios/todosClientes.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoRelatorio, new HashMap(), jrrs);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/P-2023/BLImprime/rel/relCliente.pdf");
+
+            File file = new File("E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/P-2023/BLImprime/rel/relCliente.pdf");
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(null, e);
+            }
+            file.deleteOnExit();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

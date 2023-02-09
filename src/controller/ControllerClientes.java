@@ -6,7 +6,11 @@ import model.ModelClientes;
 
 public class ControllerClientes {
 
-    private DaoClientes daoClientes = new DaoClientes();
+    public static void gerarRelatorioClientes() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private DaoClientes daoCliente = new DaoClientes();
 
     /**
      * Grava Cliente
@@ -15,7 +19,7 @@ public class ControllerClientes {
      * @return int
      */
     public int salvarClienteController(ModelClientes pModelCliente) {
-        return this.daoClientes.salvarClienteDAO(pModelCliente);
+        return this.daoCliente.salvarClienteDAO(pModelCliente);
     }
 
     /**
@@ -25,7 +29,7 @@ public class ControllerClientes {
      * @return ModelCliente
      */
     public ModelClientes getClienteController(int pIdCliente) {
-        return this.daoClientes.getClienteDAO(pIdCliente);
+        return this.daoCliente.getClienteDAO(pIdCliente);
     }
 
     /**
@@ -35,7 +39,7 @@ public class ControllerClientes {
      * @return ModelCliente
      */
     public ModelClientes getClienteController(String pNomeCliente) {
-        return this.daoClientes.getClienteDAO(pNomeCliente);
+        return this.daoCliente.getClienteDAO(pNomeCliente);
     }
 
     /**
@@ -44,7 +48,7 @@ public class ControllerClientes {
      * @return
      */
     public ArrayList<ModelClientes> getListaClientesController() {
-        return this.daoClientes.getListaClienteDAO();
+        return this.daoCliente.getListaClienteDAO();
     }
 
     /**
@@ -54,7 +58,7 @@ public class ControllerClientes {
      * @return boolean
      */
     public boolean atualizarClienteController(ModelClientes pModelCliente) {
-        return this.daoClientes.atualizarClienteDAO(pModelCliente);
+        return this.daoCliente.atualizarClienteDAO(pModelCliente);
     }
 
     /**
@@ -64,6 +68,14 @@ public class ControllerClientes {
      * @return boolean
      */
     public boolean excluirClienteController(int pIdCliente) {
-        return this.daoClientes.excluirClienteDAO(pIdCliente);
+        return this.daoCliente.excluirClienteDAO(pIdCliente);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean gerarRelatorioCliente() {
+        return this.daoCliente.gerarRelatorioCliente();
     }
 }
