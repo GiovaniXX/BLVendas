@@ -1,6 +1,9 @@
 package view;
 
+import com.mysql.jdbc.Connection;
+import conexoes.ConexaoMySql;
 import controller.ControllerUsuarios;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.ModelSessaoUsuario;
 import model.ModelUsuarios;
@@ -30,6 +33,7 @@ public class ViewLogin extends javax.swing.JFrame {
         JPFsenha = new UI_Custom.PasswordField();
         JBentrar = new UI_Custom.Button();
         JBsair = new UI_Custom.Button();
+        JLstatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Interface Loguin");
@@ -100,6 +104,12 @@ public class ViewLogin extends javax.swing.JFrame {
             }
         });
 
+        JLstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/dberror.png"))); // NOI18N
+        JLstatus.setText("SGBD");
+        JLstatus.setMaximumSize(new java.awt.Dimension(61, 32));
+        JLstatus.setMinimumSize(new java.awt.Dimension(61, 32));
+        JLstatus.setPreferredSize(new java.awt.Dimension(61, 32));
+
         javax.swing.GroupLayout JPtelaLoginLayout = new javax.swing.GroupLayout(JPtelaLogin);
         JPtelaLogin.setLayout(JPtelaLoginLayout);
         JPtelaLoginLayout.setHorizontalGroup(
@@ -113,28 +123,28 @@ public class ViewLogin extends javax.swing.JFrame {
                             .addComponent(JSlogoI)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPtelaLoginLayout.createSequentialGroup()
                                 .addGap(0, 22, Short.MAX_VALUE)
-                                .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(JPtelaLoginLayout.createSequentialGroup()
-                                        .addComponent(JBentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(186, 186, 186)
-                                        .addComponent(JBsair, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(JPtelaLoginLayout.createSequentialGroup()
-                                        .addComponent(JLloguin)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JTFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(JPtelaLoginLayout.createSequentialGroup()
-                                        .addComponent(JLsenha)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JPFsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(24, 24, 24))))
+                                        .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(JPtelaLoginLayout.createSequentialGroup()
+                                                .addComponent(JLloguin)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JTFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(JPtelaLoginLayout.createSequentialGroup()
+                                                .addComponent(JLsenha)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JPFsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(JLstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(JPtelaLoginLayout.createSequentialGroup()
+                                                    .addComponent(JBentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(186, 186, 186)
+                                                    .addComponent(JBsair, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(24, 24, 24))
+                                    .addComponent(JLtitulo, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(JPtelaLoginLayout.createSequentialGroup()
-                        .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPtelaLoginLayout.createSequentialGroup()
-                                .addGap(125, 125, 125)
-                                .addComponent(JLlogo))
-                            .addGroup(JPtelaLoginLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(JLtitulo)))
+                        .addGap(125, 125, 125)
+                        .addComponent(JLlogo)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -159,9 +169,11 @@ public class ViewLogin extends javax.swing.JFrame {
                 .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBsair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(JLtitulo)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(JPtelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JLstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLtitulo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,6 +232,25 @@ public class ViewLogin extends javax.swing.JFrame {
         });
     }
 
+//    private void status() {
+//        try {
+//            ModelUsuarios = ConexaoMySql.conectar();
+//            if (controllerUsuario != null) {
+//                JLstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/P-2023/BLVendas/src/imagens/dbok.png")));
+//            } else {
+//                JLstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/P-2023/BLVendas/src/imagens/dberror.png")));
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        } finally {
+//            try {
+//                ConexaoMySql.close();
+//            } catch (SQLException ex) {
+//                JOptionPane.showMessageDialog(null, ex);
+//            }
+//        }
+//    }
+
     private void entrar() {
         modelUsuarios.setUsuLogin(JTFlogin.getText());
         modelUsuarios.setUsuSenha(String.valueOf(JPFsenha.getPassword()));
@@ -245,6 +276,7 @@ public class ViewLogin extends javax.swing.JFrame {
     private javax.swing.JLabel JLlogo;
     private javax.swing.JLabel JLloguin;
     private javax.swing.JLabel JLsenha;
+    private javax.swing.JLabel JLstatus;
     private javax.swing.JLabel JLtitulo;
     private UI_Custom.PasswordField JPFsenha;
     private javax.swing.JPanel JPtelaLogin;
